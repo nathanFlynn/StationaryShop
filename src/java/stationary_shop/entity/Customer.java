@@ -37,6 +37,6 @@ public class Customer {
     // getters
     public int getID() { return id; }
     public String getName() { return name; }
-    public String getAddress() { return name; }
+    public String getAddress() { return address; }
     public String getEmail() { return email; }  
 }
