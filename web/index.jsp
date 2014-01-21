@@ -15,9 +15,15 @@
     <body>
         <div id="main">
             <div id="header">
-                header
+                <h1>The Stationary Shop</h1><br><br>
             </div>
-
+            <div id="login">
+                <form name="login" action="Login" method="post">
+                    Name: <input type="text" name="user">   
+                    Password: <input type="password" name="password">
+                    <input type="submit" value="Submit">
+                </form>
+            </div>
             <div id="indexLeftColumn">
                 <br>
                 <a href="ListCustomer">List Customers</a><br><br>
