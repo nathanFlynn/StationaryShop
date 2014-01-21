@@ -35,13 +35,13 @@ public class LoginServlet extends HttpServlet {
             throws ServletException, IOException {
         
         // get username & password
-        String name = (String)request.getParameter("user");
+        String email = (String)request.getParameter("email");
         String password = (String)request.getParameter("password");
         
         HttpSession session = request.getSession();
         // TODO: validate login information
                 
-        session.setAttribute("name", name);
+        session.setAttribute("email", email);
         session.setAttribute("password", password);
         request.getRequestDispatcher("login.jsp").forward(request, response);
         

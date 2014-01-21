@@ -12,7 +12,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        Name: ${name}<br>
-        Password: ${password}
+        Name: ${email}<br>
+        Password: ${password} <br>
     </body>
 </html>
