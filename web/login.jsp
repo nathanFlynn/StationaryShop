@@ -12,7 +12,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        Name: ${requestScope.name}<br>
-        Password: ${requestScope.password}
+        Name: ${name}<br>
+        Password: ${password}
     </body>
 </html>

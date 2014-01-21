@@ -13,6 +13,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -37,10 +38,11 @@ public class LoginServlet extends HttpServlet {
         String name = (String)request.getParameter("user");
         String password = (String)request.getParameter("password");
         
+        HttpSession session = request.getSession();
         // TODO: validate login information
-        
-        request.setAttribute("name", name);
-        request.setAttribute("password", password);
+                
+        session.setAttribute("name", name);
+        session.setAttribute("password", password);
         request.getRequestDispatcher("login.jsp").forward(request, response);
         
     }
