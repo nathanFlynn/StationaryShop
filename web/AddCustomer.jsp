@@ -39,7 +39,7 @@
                 alert("All fields must be filled in!");
                 return false;
             }
-            else if (atpos<1 || dotpos<atpos+2 || dotpos+2>=x.length)
+            else if (atpos<1 || dotpos<atpos+2 || dotpos+2>=email.length)
             {
               alert("Not a valid e-mail address");
               return false;
