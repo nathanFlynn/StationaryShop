@@ -4,15 +4,27 @@
     Author     : NFLYN_000
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Stationary Shop</title>
     </head>
     <body>
+        <form name="login" action="Login" method="post">
+            Email: <input type="text" name="email">   
+            Password: <input type="password" name="password">
+            <input type="submit" value="Submit">
+        </form><br><br>
+
+        <strong>${logged_in}</strong><br>
         Email: ${email}<br>
-        Password: ${password} <br>
+        Password: ${password} <br><br>
+
+        <a href="index.jsp">
+            <button>Return</button>
+        </a>
     </body>
 </html>

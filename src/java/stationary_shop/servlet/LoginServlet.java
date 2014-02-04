@@ -3,10 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package stationary_shop.servlet;
 
 import java.io.IOException;
+import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.PersistenceUnit;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -21,6 +24,9 @@ import javax.servlet.http.HttpSession;
 @WebServlet(name = "LoginServlet", urlPatterns = {"/Login"})
 public class LoginServlet extends HttpServlet {
 
+    @PersistenceUnit
+    private EntityManagerFactory emf;
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -32,18 +38,32 @@ public class LoginServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
+        assert emf != null;  //Make sure injection went through correctly.
+        EntityManager em = null;
+
         // get username & password
-        String email = (String)request.getParameter("email");
-        String password = (String)request.getParameter("password");
-        
+        String email = (String) request.getParameter("email");
+        String password = (String) request.getParameter("password");
+
         HttpSession session = request.getSession();
-        // TODO: validate login information
-                
-        session.setAttribute("email", email);
-        session.setAttribute("password", password);
+
+        // validate login information
+        em = emf.createEntityManager();
+        List customer = em.createQuery("select c from Customer c "
+                + "where c.email = '" + email + "' and c.password = '" +password +"'").getResultList();
+
+        if (!customer.isEmpty()) {
+            session.setAttribute("logged_in", "Logged in!");
+            session.setAttribute("email", email);
+            session.setAttribute("password", password);
+        }
+        else {
+            session.setAttribute("logged_in", "Could not login!");
+        }
+
         request.getRequestDispatcher("login.jsp").forward(request, response);
-        
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

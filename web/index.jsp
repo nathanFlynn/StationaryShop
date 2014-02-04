@@ -18,16 +18,18 @@
                 <h1>The Stationary Shop</h1><br><br>
             </div>
             <div id="login">
-                <form name="login" action="Login" method="post">
-                    Email: <input type="text" name="email">   
-                    Password: <input type="password" name="password">
-                    <input type="submit" value="Submit">
-                </form>
+                <a href="login.jsp">
+                    <button>Login</button>
+                </a>  
+                <a href="Logout">
+                    <button>Logout</button>
+                </a>
             </div>
             <div id="indexLeftColumn">
                 <br>
                 <a href="ListCustomer">List Customers</a><br><br>
                 <a href="AddCustomer.jsp">Add Customers</a><br>
+                <a href="Catalog">Catalog</a>
             </div>
 
             <div id="indexRightColumn">
