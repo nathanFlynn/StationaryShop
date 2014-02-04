@@ -4,14 +4,36 @@
     Author     : NFLYN_000
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page contentType="text/html"%>
+<%@page pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%> 
+
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Stationary Shop</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h1>List of Customers currently in Database</h1>
+
+        <table id="customerListTable" border="3">
+            <tr >
+                <th bgcolor=>ID</th>
+                <th bgcolor=>Name</th>
+                <th bgcolor=>description</th>
+                <th bgcolor=>price</th>
+            </tr>
+            <c:forEach var="product" begin="0" items="${requestScope.productsList}">
+                <tr>
+                    <td>${product.getID()}&nbsp;&nbsp;</td> 
+                    <td>${product.getName()}&nbsp;&nbsp;</td> 
+                    <td>${product.getDesc()}&nbsp;&nbsp;</td>
+                    <td>${product.getPrice()}&nbsp;&nbsp;</td>
+                </tr> 
+
+            </c:forEach>
+
+        </table>
     </body>
 </html>

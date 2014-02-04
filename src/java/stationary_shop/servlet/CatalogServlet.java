@@ -6,21 +6,26 @@
 
 package stationary_shop.servlet;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import javax.servlet.ServletException;
+import java.io.*;
+import java.util.List;
+import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.*;
+
+import javax.persistence.PersistenceUnit;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityManager;
+
 
 /**
  *
  * @author NFLYN_000
  */
-@WebServlet(name = "CatalogServlet", urlPatterns = {"/CatalogServlet"})
+@WebServlet(name = "CatalogServlet", urlPatterns = {"/Catalog"})
 public class CatalogServlet extends HttpServlet {
-
+    
+    @PersistenceUnit
+    private EntityManagerFactory emf;
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -32,7 +37,26 @@ public class CatalogServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        assert emf != null;  //Make sure injection went through correctly.
+        EntityManager em = null;
+        try {
+            em = emf.createEntityManager();
 
+            //query for all the persons in database
+            List products = em.createQuery("select c from Product c").getResultList();
+            request.setAttribute("productsList", products);
+
+            
+            //Forward to the jsp page for rendering
+            request.getRequestDispatcher("catalog.jsp").forward(request, response);
+        } catch (Exception ex) {
+            throw new ServletException(ex);
+        } finally {
+            //close the em to release any resources held up by the persistebce provider
+            if (em != null) {
+                em.close();
+            }
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
