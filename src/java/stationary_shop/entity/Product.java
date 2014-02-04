@@ -21,15 +21,19 @@ public class Product {
     @Column(name = "price")
     private float price;
     
+    @Column(name = "stock")
+    private int stock;
+    
     // constructor
     public Product() {
     }
     
     // ID auto-added by database
-    public Product(String name, String description, float price){
+    public Product(String name, String description, float price, int stock){
         this.name = name;
         this.description = description;
         this.price = price;
+        this.stock = stock;
     }
     
     // getters
@@ -37,4 +41,10 @@ public class Product {
     public String getName() { return name; }
     public String getDesc() { return description; }
     public float getPrice() { return price; }  
+    public int getStock()   { return stock; }
+    
+    // setters
+    public void setStock(int newStock){
+        this.stock = newStock;
+    }
 }

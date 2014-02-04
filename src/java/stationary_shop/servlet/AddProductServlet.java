@@ -7,7 +7,6 @@ import java.io.*;
 import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
-
 import javax.persistence.PersistenceUnit;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityManager;
@@ -35,9 +34,10 @@ public class AddProductServlet extends HttpServlet {
             String name = (String) request.getParameter("name");
             String description = (String) request.getParameter("description");
             float price = Float.parseFloat(request.getParameter("price"));
+            int stock = Integer.parseInt(request.getParameter("stock"));
 
             //Create a product instance out of it
-            Product product = new Product(name, description, price);
+            Product product = new Product(name, description, price, stock);
 
             //begin a transaction
             utx.begin();
