@@ -36,35 +36,25 @@ public class UpdateStockServlet extends HttpServlet {
             // Get parameters from the .jsp page.
             int id = Integer.parseInt(request.getParameter("id"));
             int newStockLevel = Integer.parseInt(request.getParameter("stockLevel"));
-            
-            /*
-            // Find the product by the ID entered.
-            Product prod = em.getReference(Product.class, id);
-            
-            if(prod == null){
-            utx.begin();
-            
-            em = emf.createEntityManager();
-            prod.setStock(newStockLevel);
-            em.persist(prod);
-            
-            utx.commit();
-            }
-            else
-                System.out.println("FFS");
-            */
-            
+                        
             String updateString = "UPDATE Product SET stock = :stock WHERE id = :id";
             
+            // Begin transaction.
+            utx.begin();
+            
+            // Entity maanger associated with transaction.
+            em = emf.createEntityManager();
+            
+            // Create query and set parameters to the request params.
             Query q = em.createQuery(updateString);
             q.setParameter("id", id);
             q.setParameter("stock", newStockLevel);
             
-            //utx.begin();
-            //em = emf.createEntityManager();
+            // Execute query.
             q.executeUpdate();
-            //dutx.commit();
             
+            // End transaction.
+            utx.commit();            
             
             //Forward to the jsp page for rendering
             request.getRequestDispatcher("index.jsp").forward(request, response);

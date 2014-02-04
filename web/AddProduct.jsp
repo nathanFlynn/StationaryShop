@@ -32,7 +32,7 @@
             var price = document.forms["addProductForm"]["price"].value;
             var stock = document.forms["addProductForm"]["stock"].value;
             
-            if (name == "" || description == "" || price == "" || stock = "")
+            if (name == "" || description == "" || price == "" || stock == "")
             {
                 alert("All fields must be filled in!");
                 return false;
