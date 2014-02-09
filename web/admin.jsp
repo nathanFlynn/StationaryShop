@@ -16,6 +16,6 @@
         <a href="AddProduct.jsp">Add New Product</a><br>
         <a href="removeProduct.jsp">Remove Product</a><br>
         <a href="UpdateStock.jsp">Update Stock</a><br>
-        <a href="#">List Products</a><br>
+        <a href="Catalog">List Products</a><br>
     </body>
 </html>

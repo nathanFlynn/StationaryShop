@@ -56,7 +56,7 @@ public class UpdateStockServlet extends HttpServlet {
             // End transaction.
             utx.commit();            
             
-            //Forward to the jsp page for rendering
+            // Go to the index page.
             request.getRequestDispatcher("index.jsp").forward(request, response);
             
             

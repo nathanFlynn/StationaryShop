@@ -13,11 +13,22 @@
     </head>
     <body>
         <h1>Remove a product</h1><br>
-        <strong>Enter name of product you want to remove</strong><br>
+        <strong>Enter the ID of the product you want to remove</strong><br>
         <form name="removeProductForm" id="removeProductForm" action="RemoveProduct" onsubmit ="return validateForm();" method="post">
-            name <input type="text" id = "name" name="name" />
+            ID: <input type="text" id = "id" name="id" />
             <input type="submit" id="removeProduct" value="Remove Product" />
         </form>
-        <br><a href="#"><strong>Go to List of Products</strong></a>
+        <br><a href="Catalog"><strong>Go to List of Products</strong></a>
     </body>
+    <script>
+        function validateForm()
+        {
+            var id=document.forms["addProductForm"]["id"].value;
+            
+            if (id == ""){
+                alert("You must enter an ID!");
+                return false;
+            }
+        }
+    </script>
 </html>

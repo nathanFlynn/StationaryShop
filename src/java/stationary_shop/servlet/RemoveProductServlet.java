@@ -7,14 +7,17 @@ package stationary_shop.servlet;
 
 import java.io.IOException;
 import java.util.List;
+import javax.annotation.Resource;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceUnit;
+import javax.persistence.Query;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.transaction.UserTransaction;
 
 /**
  *
@@ -25,6 +28,9 @@ public class RemoveProductServlet extends HttpServlet {
 
     @PersistenceUnit
     private EntityManagerFactory emf;
+    
+    @Resource
+    private UserTransaction utx;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -41,12 +47,26 @@ public class RemoveProductServlet extends HttpServlet {
         EntityManager em = null;
 
         try {
+
+            int id = Integer.parseInt(request.getParameter("id"));
+            
+            String deleteString = "DELETE FROM Product WHERE id = :id";
+
+             // Begin transaction.
+            utx.begin();
+            
+            // Entity manager associated with transaction.
             em = emf.createEntityManager();
-
-            String name = (String) request.getParameter("name");
-            String query = "DELETE FROM Product p WHERE p.name = '" + name +"'";
-
-            int deleted = em.createQuery(query).executeUpdate();
+            
+            // Create query and set parameters to the request params.
+            Query q = em.createQuery(deleteString);
+            q.setParameter("id", id);
+            
+            // Execute query.
+            q.executeUpdate();
+            
+            // End transaction.
+            utx.commit();            
 
             request.getRequestDispatcher("admin.jsp").forward(request, response);
         } catch (Exception ex) {
