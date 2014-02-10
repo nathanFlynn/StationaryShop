@@ -15,7 +15,7 @@
         <title>Stationary Shop</title>
     </head>
     <body>
-        <h1>List of Customers currently in Database</h1>
+        <h1>Catalog</h1>
 
         <table id="customerListTable" border="3">
             <tr >
@@ -24,12 +24,21 @@
                 <th bgcolor=>description</th>
                 <th bgcolor=>price</th>
             </tr>
-            <c:forEach var="product" begin="0" items="${requestScope.productsList}">
+            <c:forEach var="product" begin="0" items="${productsList}">
                 <tr>
                     <td>${product.getID()}&nbsp;&nbsp;</td> 
                     <td>${product.getName()}&nbsp;&nbsp;</td> 
                     <td>${product.getDesc()}&nbsp;&nbsp;</td>
                     <td>${product.getPrice()}&nbsp;&nbsp;</td>
+                    <td><form action="AddToCart" method="post">
+                            <input type="hidden"
+                                   name="product"
+                                   value="${product.getID()}">
+                            <input type="submit"
+                                   name="submit"
+                                   value="add to cart">
+                        </form></td>
+
                 </tr> 
 
             </c:forEach>

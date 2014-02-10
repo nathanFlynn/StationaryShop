@@ -38,13 +38,16 @@ public class CatalogServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         assert emf != null;  //Make sure injection went through correctly.
+        
+        HttpSession session = request.getSession();
+        
         EntityManager em = null;
         try {
             em = emf.createEntityManager();
 
             //query for all the persons in database
             List products = em.createQuery("select c from Product c").getResultList();
-            request.setAttribute("productsList", products);
+            session.setAttribute("productsList", products);
 
             
             //Forward to the jsp page for rendering
