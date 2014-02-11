@@ -37,6 +37,17 @@ public class AddToCartServlet extends HttpServlet {
         HttpSession session = request.getSession();
         ShoppingCart cart = (ShoppingCart) session.getAttribute("cart");
         
+        String type = request.getParameter("type");
+        String path;
+        
+        // return to catalog or cart
+        if (type.equalsIgnoreCase("increment")) {
+            path = "cart.jsp";
+        }
+        else {
+            path = "catalog.jsp";
+        }
+        
         int itemID = Integer.parseInt(request.getParameter("product"));
         
         // get item
@@ -57,7 +68,7 @@ public class AddToCartServlet extends HttpServlet {
         // add product to cart
         cart.addItem(prod);
         
-        request.getRequestDispatcher("catalog.jsp").forward(request, response);
+        request.getRequestDispatcher(path).forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

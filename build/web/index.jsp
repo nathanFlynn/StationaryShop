@@ -33,7 +33,7 @@
             </div>
 
             <div id="indexRightColumn">
-                right column
+                <a href="cart.jsp">View Cart</a>
             </div>
 
             <div id="footer">
