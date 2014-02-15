@@ -34,11 +34,9 @@ public class ShoppingCart {
      * @see ShoppingCartItem
      */
     public synchronized void addItem(Product product) {
-
         boolean newItem = true;
 
         for (ShoppingCartItem scItem : items) {
-
             if (scItem.getProduct().getID() == product.getID()) {
 
                 newItem = false;
@@ -50,6 +48,20 @@ public class ShoppingCart {
             ShoppingCartItem scItem = new ShoppingCartItem(product);
             items.add(scItem);
         }
+    }
+    
+    
+    // remove an item
+    public synchronized void removeItem(Product prod) {
+        ShoppingCartItem item = null;
+        // get ShoppingCartItem
+        for (ShoppingCartItem scItem : items) {
+            if (scItem.getProduct().getID() == prod.getID()) {
+                item = scItem;
+            }
+        }
+        
+        items.remove(item);
     }
 
     /**

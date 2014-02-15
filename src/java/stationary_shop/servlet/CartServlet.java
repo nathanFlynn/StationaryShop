@@ -3,22 +3,24 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package stationary_shop.servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import stationary_shop.cart.ShoppingCart;
+import stationary_shop.entity.Product;
 
 /**
  *
  * @author NFLYN_000
  */
-@WebServlet(name = "CartServlet", urlPatterns = {"/CartServlet"})
+@WebServlet(name = "CartServlet", urlPatterns = {"/Cart"})
 public class CartServlet extends HttpServlet {
 
     /**
@@ -32,7 +34,50 @@ public class CartServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
- 
+        HttpSession session = request.getSession();
+        ShoppingCart cart = (ShoppingCart) session.getAttribute("shoppingCart");
+
+        String type = request.getParameter("commandType");
+        String path;
+
+        int itemID = Integer.parseInt(request.getParameter("productID"));
+        
+        // get item
+        List<Product> productList = (List) session.getAttribute("productsList");
+        Product prod = null;
+        
+        for (Product p : productList) {
+            if (p.getID() == itemID) {
+                prod = p;
+            }
+        }
+        
+        // return to catalog or cart
+        if (type.equalsIgnoreCase("new")) {
+            path = "catalog.jsp";        
+        }
+        else {
+            path = "cart.jsp";
+        }
+
+        // new cart
+        if (cart == null) {
+            cart = new ShoppingCart();
+            session.setAttribute("shoppingCart", cart);
+        }
+
+        // remove item, add item, or clear cart
+        if (type.equalsIgnoreCase("remove")) {
+            cart.removeItem(prod);
+        }
+        else if (type.equalsIgnoreCase("clear")) {
+            cart.clear();
+        }
+        else {
+            cart.addItem(prod);
+        }
+
+        request.getRequestDispatcher(path).forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

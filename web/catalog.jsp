@@ -30,15 +30,16 @@
                     <td> ${product.getName()}&nbsp;&nbsp; </td> 
                     <td> ${product.getDesc()}&nbsp;&nbsp; </td>
                     <td> ${product.getPrice()}&nbsp;&nbsp; </td>
-                    <td><form action="AddToCart" method="post">
+                    
+                    <td><form action="Cart" method="post">
                             <input type="hidden"
-                                   name="product"
+                                   name="productID"
                                    value="${product.getID()}">
                             <input type="submit"
                                    name="submit"
                                    value="add to cart">
                             <input type="hidden"
-                                   name="type"
+                                   name="commandType"
                                    value="new">
                         </form></td>
 
