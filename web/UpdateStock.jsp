@@ -1,17 +1,4 @@
-<%-- 
-    Document   : UpdateStock
-    Created on : 03-Feb-2014, 17:25:00
-    Author     : Dara
---%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Update stock</title>
-    </head>
-    <body>
         <h1>Update the stock levels of a product:</h1>
         <form name="updateStockForm" id="updateStockForm" action="UpdateStock" onsubmit ="return validateForm();" method="post">
             <table>
@@ -20,7 +7,6 @@
             </table>
             <input type="submit" id="UpdateStock" value="Update stock" />
         </form>
-    </body>
     <script>
         function validateForm()
         {
@@ -33,4 +19,3 @@
             }
         }
     </script>
-</html>
