@@ -19,7 +19,7 @@
             <input type="submit" value="Submit">
         </form><br><br>
 
-        <strong>${logged_in}</strong><br>
+        <strong>${requestScope.login}</strong><br>
         Email: ${email}<br>
         Password: ${password} <br><br>
 

@@ -66,6 +66,9 @@
         <a href="index.jsp">
             <button>Return</button>
         </a>
+        <a href="checkout.jsp">
+            <button>Checkout</button>
+        </a>
 
         <%-- clear cart --%>
         <form action="Cart" method="post">

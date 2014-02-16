@@ -39,6 +39,12 @@ public class CartServlet extends HttpServlet {
 
         String type = request.getParameter("commandType");
         String path;
+        
+        // creates loggedin attribute, if not already present
+        // used in checkout to make sure user is logged in
+        if (session.getAttribute("logged_in") == null) {
+            session.setAttribute("logged_in", false);
+        }
 
         int itemID = Integer.parseInt(request.getParameter("productID"));
         

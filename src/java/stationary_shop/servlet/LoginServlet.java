@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import stationary_shop.entity.Customer;
 
 /**
  *
@@ -52,14 +53,18 @@ public class LoginServlet extends HttpServlet {
         em = emf.createEntityManager();
         List customer = em.createQuery("select c from Customer c "
                 + "where c.email = '" + email + "' and c.password = '" +password +"'").getResultList();
+        Customer cust = (Customer) customer.get(0);
 
         if (!customer.isEmpty()) {
-            session.setAttribute("logged_in", "Logged in!");
+            request.setAttribute("login", "Logged in!");
             session.setAttribute("email", email);
+            session.setAttribute("name", cust.getName());
+            session.setAttribute("address", cust.getAddress());
             session.setAttribute("password", password);
+            session.setAttribute("logged_in", true);
         }
         else {
-            session.setAttribute("logged_in", "Could not login!");
+            request.setAttribute("login", "Could not login!");
         }
 
         request.getRequestDispatcher("login.jsp").forward(request, response);

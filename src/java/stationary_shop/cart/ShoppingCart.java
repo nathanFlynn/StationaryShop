@@ -185,7 +185,7 @@ public class ShoppingCart {
      * @return the cost of all items times their quantities plus surcharge
      */
     public synchronized double getTotal() {
-
+        calculateTotal("0.0");
         return total;
     }
 
