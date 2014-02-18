@@ -16,7 +16,7 @@
                     <td>${customer.getEmail()}&nbsp;&nbsp;</td>
                 </tr> 
 
-            </c:forEach>
+    </c:forEach>
 
         </table>
         <a href="AddCustomer.jsp"><strong>Create a Customer Record</strong></a>

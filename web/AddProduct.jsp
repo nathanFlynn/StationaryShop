@@ -12,16 +12,8 @@
     <script>
         function validateForm()
         {
-            var name=document.forms["addProductForm"]["name"].value;
-            var description=document.forms["addProductForm"]["description"].value;
-            var price = document.forms["addProductForm"]["price"].value;
-            var stock = document.forms["addProductForm"]["stock"].value;
-            
-            if (name == "" || description == "" || price == "" || stock == "")
-            {
-                alert("All fields must be filled in!");
-                return false;
-            }
+            alert("All fields must be filled in!");
+            return false;
         }
     </script>
 </div>

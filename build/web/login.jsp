@@ -5,9 +5,8 @@
             <input type="submit" value="Submit">
         </form><br><br>
 
-        <strong>${requestScope.login}</strong><br>
-        Email: ${email}<br>
-        Password: ${password} <br><br>
+<strong>${requestScope.login}</strong><br>
+Email: ${email}<br>
 
         <a href="index.jsp">
             <button>Return</button>

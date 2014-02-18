@@ -6,4 +6,3 @@
     <a href="UpdateStock.jsp">Update Stock</a><br>
     <a href="ListCustomer">List Customers</a><br>
 </div>
-

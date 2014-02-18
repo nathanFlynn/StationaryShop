@@ -19,40 +19,40 @@
                     <td> ${product.getPrice()}&nbsp;&nbsp; </td>
                     <td> ${item.getQuantity()}&nbsp;&nbsp; </td>
 
-                    <%-- increment item in cart --%>
-                    <td><form action="Cart" method="post">
-                            <input type="hidden"
-                                   name="productID"
-                                   value="${product.getID()}">
-                            <input type="submit"
-                                   name="submit"
-                                   value=" +1 ">
-                            <input type="hidden"
-                                   name="commandType"
-                                   value="increment">
-                        </form></td>
+            <%-- increment item in cart --%>
+            <td><form action="Cart" method="post">
+                    <input type="hidden"
+                           name="productID"
+                           value="${product.getID()}">
+                    <input type="submit"
+                           name="submit"
+                           value=" +1 ">
+                    <input type="hidden"
+                           name="commandType"
+                           value="increment">
+                </form></td>
 
-                    <%-- remove item from cart --%>
-                    <td><form action="Cart" method="post">
-                            <input type="hidden"
-                                   name="productID"
-                                   value="${product.getID()}">
-                            <input type="submit"
-                                   name="submit"
-                                   value=" X ">
-                            <input type="hidden"
-                                   name="commandType"
-                                   value="remove">
-                        </form></td>
-                </tr> 
-            </c:forEach>
-        </table><br>
-        <a href="index.jsp">
-            <button>Return</button>
-        </a>
-        <a href="checkout.jsp">
-            <button>Checkout</button>
-        </a>
+            <%-- remove item from cart --%>
+            <td><form action="Cart" method="post">
+                    <input type="hidden"
+                           name="productID"
+                           value="${product.getID()}">
+                    <input type="submit"
+                           name="submit"
+                           value=" X ">
+                    <input type="hidden"
+                           name="commandType"
+                           value="remove">
+                </form></td>
+        </tr> 
+    </c:forEach>
+</table><br>
+<a href="index.jsp">
+    <button>Return</button>
+</a>
+<a href="checkout.jsp">
+    <button>Checkout</button>
+</a>
 
         <%-- clear cart --%>
         <form action="Cart" method="post">
