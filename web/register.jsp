@@ -1,3 +1,4 @@
+<div id="register">
 <h1>Register</h1>
 <form name="registerForm" id="createPersonForm" action="Register" onsubmit ="return validateForm();" method="post">
     <table>
@@ -38,5 +39,6 @@
                 return false;
             }
         }
-    </script>
+    }
+</script>
 </div>
