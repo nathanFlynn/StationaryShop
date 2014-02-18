@@ -1,4 +1,4 @@
-
+<div id="checkout">
         <%-- must be logged in to checkout --%>
         <c:if test="${logged_in == true}">
             Name: ${name} <br>
@@ -11,4 +11,4 @@
         <c:if test="${logged_in == false}">
             <strong>Please <a href="login.jsp">login</a> to checkout</strong>
         </c:if>
-
+</div>

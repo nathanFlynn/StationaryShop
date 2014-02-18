@@ -1,6 +1,7 @@
-        <h1>List of Customers currently in Database</h1>
+<div id="listCustomers">
+<h1>List of Customers currently in Database</h1>
 
-        <table id="customerListTable" border="3">
+        <table id="customerListTable" border="3" align="center">
             <tr >
                 <th bgcolor=>ID</th>
                 <th bgcolor=>Name</th>
@@ -19,3 +20,4 @@
 
         </table>
         <a href="AddCustomer.jsp"><strong>Create a Customer Record</strong></a>
+</div>

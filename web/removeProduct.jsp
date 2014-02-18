@@ -1,4 +1,5 @@
-        <h1>Remove a product</h1><br>
+<div id="removeProduct">
+    <h1>Remove a product</h1><br>
         <strong>Enter the ID of the product you want to remove</strong><br>
         <form name="removeProductForm" id="removeProductForm" action="RemoveProduct" onsubmit ="return validateForm();" method="post">
             ID: <input type="text" id = "id" name="id" />
@@ -16,3 +17,4 @@
             }
         }
     </script>
+</div>

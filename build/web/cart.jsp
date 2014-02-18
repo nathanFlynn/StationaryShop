@@ -1,7 +1,8 @@
-        <h1>Cart</h1>
+<div id="cart">
+<h1>Cart</h1>
 
         <strong>Cart contains ${shoppingCart.getNumberOfItems()} item(s)</strong><br>
-        <table id="productListTable" border="3">
+        <table id="productListTable" border="3" align="center">
             <tr >
                 <th bgcolor=> ID </th>
                 <th bgcolor=> Name </th>
@@ -65,3 +66,4 @@
                    name="commandType"
                    value="clear">
         </form>   
+</div>

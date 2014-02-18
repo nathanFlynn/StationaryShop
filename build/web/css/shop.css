@@ -2,12 +2,9 @@
     Created on : 04-Nov-2013, 22:46:29
     Author     : n8
 */
-
-// copied from affablebean. change later!
 body {
     font-family: Arial, Helvetica, sans-serif;
     width: 850px;
-    text-align: center;
     margin: 20px auto;
 }
 
@@ -22,34 +19,71 @@ body {
     font-size:  150%;
     background: #3366CC;
     padding: 50px 10px 10px 10px;
+    border-bottom: solid black;
 }
 
 #login {
     height: 25px;
     background: #eee;
-    border-bottom: 2px black solid;
-    padding: 5px 5px 2px 5px;
+    border: 2px black solid;
+    padding: 2px 2px 5px 5px;
     float: right;
 }
 
 #footer {
     height: 60px;
     clear: left;
+    text-align: center;
     background: #3366CC;
+    border-top: solid black;
 }
 
 #indexLeftColumn {
     height: 400px;
-    width: 350px;
+    width: 150px;
     float: left;
-    background: #6699FF;
+    background: lightblue;
     font-size: 120%;
+    border-right: solid black;
 }
 
 #indexRightColumn {
     height: 400px;
-    width: 500px;
-    float: left;
-    right: 0px;
-    background: #6699FF;
+    width: auto;
+    text-align: center;
 }
+#productListTable{
+    width: 400px;
+}
+#catalog{
+    text-align: center;
+}
+#register{
+    text-align: center;
+}
+#admin{
+    text-align: center;
+}
+#cart{
+    text-align: center;
+}
+#updateStock{
+    text-align: center;
+}
+#listCustomer{
+    text-align: center;
+}
+#removeProduct{
+    text-align: center;
+}
+#addProduct{
+    text-align: center;
+}
+#loginDiv{
+    text-align: center;
+}
+#checkout{
+    text-align: center;
+}
+
+form { text-align: left; display: inline-block; width: auto;}

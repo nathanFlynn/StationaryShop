@@ -1,6 +1,7 @@
-        <h1>Add a new product</h1>
+<div id="addProduct">
+    <h1>Add a new product</h1>
         <form name="addProductForm" id="addProductForm" action="AddProduct" onsubmit ="return validateForm();" method="post">
-            <table>
+            <table id="addProductTable" align="center">
                 <tr><td>name</td><td><input type="text" id = "name" name="name" /></td></tr>
                 <tr><td>description</td><td><input type="text" id = "description" name="description" /></td></tr>
                 <tr><td>price</td><td><input type="text" id = "price" name="price" /></td></tr>
@@ -8,7 +9,6 @@
             </table>
             <input type="submit" id="CreateProduct" value="CreateProduct" />
         </form>
-        <br><a href="ListCustomer"><strong>Go to List of customers</strong></a>
     <script>
         function validateForm()
         {
@@ -24,3 +24,4 @@
             }
         }
     </script>
+</div>

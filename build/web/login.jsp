@@ -1,4 +1,4 @@
-
+<div id="loginDiv">
         <form name="login" action="Login" method="post">
             Email: <input type="text" name="email">   
             Password: <input type="password" name="password">
@@ -12,3 +12,5 @@
         <a href="index.jsp">
             <button>Return</button>
         </a>
+</div>
+        

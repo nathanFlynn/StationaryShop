@@ -53,9 +53,10 @@ public class LoginServlet extends HttpServlet {
         em = emf.createEntityManager();
         List customer = em.createQuery("select c from Customer c "
                 + "where c.email = '" + email + "' and c.password = '" +password +"'").getResultList();
-        Customer cust = (Customer) customer.get(0);
+        
 
         if (!customer.isEmpty()) {
+            Customer cust = (Customer) customer.get(0);
             request.setAttribute("login", "Logged in!");
             session.setAttribute("email", email);
             session.setAttribute("name", cust.getName());

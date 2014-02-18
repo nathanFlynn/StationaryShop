@@ -1,4 +1,4 @@
-
+<div id="updateStock">
         <h1>Update the stock levels of a product:</h1>
         <form name="updateStockForm" id="updateStockForm" action="UpdateStock" onsubmit ="return validateForm();" method="post">
             <table>
@@ -19,3 +19,4 @@
             }
         }
     </script>
+</div>
