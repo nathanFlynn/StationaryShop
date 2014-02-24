@@ -51,6 +51,25 @@ public class ShoppingCart {
         }
     }
 
+    public synchronized void decementItemQuantity(Product product) {
+        boolean remove = false;
+        for (ShoppingCartItem scItem : items) {
+            if (scItem.getProduct().getID() == product.getID()) {
+
+                if (scItem.quantity < 1) {
+                    remove = true;
+                }
+                else {
+                    scItem.decrementQuantity();
+                }
+            }
+        }
+        
+        if (remove) {
+            this.removeItem(product);
+        }
+    }
+
     // remove an item
     public synchronized void removeItem(Product prod) {
         ShoppingCartItem item = null;

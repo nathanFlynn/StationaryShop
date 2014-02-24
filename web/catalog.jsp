@@ -2,7 +2,7 @@
 
     <h1>Catalog</h1>
 
-    <table id="productListTable" border="3" align="center">
+    <table id="productListTable" border="1" align="center">
         <tr >
             <th bgcolor=> ID </th>
             <th bgcolor=> Name </th>

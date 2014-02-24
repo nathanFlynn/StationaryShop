@@ -79,7 +79,11 @@ public class CartServlet extends HttpServlet {
         else if (type.equalsIgnoreCase("clear")) {
             cart.clear();
         }
-        else {
+        else if (type.equalsIgnoreCase("decrement")) {
+            cart.decementItemQuantity(prod);
+        }
+        else if (type.equalsIgnoreCase("increment") || 
+                type.equalsIgnoreCase("new") ) {
             cart.addItem(prod);
         }
 
