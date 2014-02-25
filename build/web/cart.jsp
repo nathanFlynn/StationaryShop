@@ -20,7 +20,7 @@
                 <td> ${item.getQuantity()}&nbsp;&nbsp; </td>
 
                 <%-- increment item in cart --%>
-                <td><form action="Cart" method="get">
+                <td><form action="Cart" method="post">
                         <input type="hidden"
                                name="productID"
                                value="${product.getID()}">

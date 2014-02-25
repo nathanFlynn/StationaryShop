@@ -1,4 +1,4 @@
-<div id="loginDiv">
+<div id="loginDiv"><br>
         <form name="login" action="Login" method="post">
             Email: <input type="text" name="email">   
             Password: <input type="password" name="password">
@@ -6,7 +6,7 @@
         </form><br><br>
 
 <strong>${requestScope.login}</strong><br>
-Email: ${email}<br>
+Logged in as: ${email}<br>
 
         <a href="index.jsp">
             <button>Return</button>

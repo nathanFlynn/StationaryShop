@@ -8,6 +8,7 @@
             <th bgcolor=> Name </th>
             <th bgcolor=> Description </th>
             <th bgcolor=> Price </th>
+            <th bgcolor=> In Stock </th>
         </tr>
         <c:forEach var="product" begin="0" items="${productsList}">
             <tr>
@@ -15,6 +16,7 @@
                 <td> ${product.getName()}&nbsp;&nbsp; </td> 
                 <td> ${product.getDesc()}&nbsp;&nbsp; </td>
                 <td> ${product.getPrice()}&nbsp;&nbsp; </td>
+                <td> ${product.getStock()}&nbsp;&nbsp; </td>
 
                 <td><form action="Cart" method="post">
                         <input type="hidden"

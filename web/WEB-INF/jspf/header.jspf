@@ -5,7 +5,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" type="text/css" href="css/shop.css">
-        <title>Stationary Shop</title>
+        <title>The Stationary Shop</title>
     </head>
     <body>
         <div id="main">
@@ -23,6 +23,7 @@
             </div>
             <div id="indexLeftColumn">
                 <br>
+                &nbsp; <a href="index.jsp">Home</a><br>
                 &nbsp; <a href="register.jsp">Register</a><br>
                 &nbsp; <a href="Catalog"> Catalog</a><br>
                 &nbsp; <a href="admin.jsp"> Admin Page</a><br>

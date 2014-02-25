@@ -57,7 +57,7 @@ public class UpdateStockServlet extends HttpServlet {
             utx.commit();            
             
             // Go to the index page.
-            request.getRequestDispatcher("index.jsp").forward(request, response);
+            request.getRequestDispatcher("admin.jsp").forward(request, response);
             
             
         } catch (Exception ex) {
