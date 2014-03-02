@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import stationary_shop.entity.Customer;
+import stationary_shop.entity.Employee;
 
 /**
  *
@@ -38,7 +39,8 @@ public class LoginServlet extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException 
+    {
 
         assert emf != null;  //Make sure injection went through correctly.
         EntityManager em = null;
@@ -46,26 +48,52 @@ public class LoginServlet extends HttpServlet {
         // get username & password
         String email = (String) request.getParameter("email");
         String password = (String) request.getParameter("password");
-
+        String type = request.getParameter("type");
         HttpSession session = request.getSession();
 
         // validate login information
-        em = emf.createEntityManager();
-        List customer = em.createQuery("select c from Customer c "
-                + "where c.email = '" + email + "' and c.password = '" +password +"'").getResultList();
         
+        em = emf.createEntityManager();
+        if("Employee".equals(type)) 
+        {
+            List employee = em.createQuery("select c from Employee c "
+                + "where c.email = '" + email + "' and c.password = '" +password +"'").getResultList();
+            
 
-        if (!customer.isEmpty()) {
+            if (!employee.isEmpty()) 
+            {
+                Employee empl = (Employee) employee.get(0);
+                request.setAttribute("login", "Logged in!");
+                session.setAttribute("email", email);
+                session.setAttribute("name", empl.getName());
+                session.setAttribute("password", password);
+                session.setAttribute("type", type);
+                session.setAttribute("logged_in", true);
+            }
+            else 
+            {
+                request.setAttribute("login", "Could not login!");
+            }
+        }
+        else 
+        {
+            List customer = em.createQuery("select c from Customer c "
+                    + "where c.email = '" + email + "' and c.password = '" +password +"'").getResultList();
+            if (!customer.isEmpty()) 
+            {
             Customer cust = (Customer) customer.get(0);
             request.setAttribute("login", "Logged in!");
             session.setAttribute("email", email);
             session.setAttribute("name", cust.getName());
             session.setAttribute("address", cust.getAddress());
             session.setAttribute("password", password);
+            session.setAttribute("type", type);
             session.setAttribute("logged_in", true);
-        }
-        else {
-            request.setAttribute("login", "Could not login!");
+            }
+            else 
+            {
+                request.setAttribute("login", "Could not login!");
+            }
         }
 
         request.getRequestDispatcher("login.jsp").forward(request, response);

@@ -5,4 +5,5 @@
     <a href="Catalog">List Products</a><br>
     <a href="UpdateStock.jsp">Update Stock</a><br>
     <a href="ListCustomer">List Customers</a><br>
+    <a href="AddEmployee.jsp">Add Employee</a><br>
 </div>
