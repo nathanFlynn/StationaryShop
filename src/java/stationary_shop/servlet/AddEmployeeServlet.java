@@ -28,12 +28,12 @@ public class AddEmployeeServlet extends HttpServlet {
 
         try {
 
-            //Get the data from user's form
+            //Get the data from Employee's form
             String name = (String) request.getParameter("name");
             String email = (String) request.getParameter("email");
             String password = (String) request.getParameter("password");
 
-            //Create a customer instance out of it
+            //Create a Employee instance out of it
             Employee newemployee = new Employee(name, email, password);
 
             //begin a transaction
@@ -48,7 +48,7 @@ public class AddEmployeeServlet extends HttpServlet {
             //commit newly created entity into database
             utx.commit();
 
-            //Forward to ListPerson servlet to list persons along with the newly
+            //Forward to homepage
             //created person above
             request.getRequestDispatcher("index.jsp").forward(request, response);
         } catch (Exception ex) {

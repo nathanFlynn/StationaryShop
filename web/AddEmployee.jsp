@@ -12,22 +12,20 @@
     function validateForm()
     {
         var name = document.forms["registerForm"]["name"].value;
-        var address = document.forms["registerForm"]["address"].value;
         var email = document.forms["registerForm"]["email"].value;
         var password = document.forms["registerForm"]["password"].value;
         var atpos = email.indexOf("@");
         var dotpos = email.lastIndexOf(".");
 
-        if (name == "" || address == "" || email == "" || password == "")
+        if (name == "" || email == "" || password == "")
         {
             var name = document.forms["registerForm"]["name"].value;
-            var address = document.forms["registerForm"]["address"].value;
             var email = document.forms["registerForm"]["email"].value;
             var password = document.forms["registerForm"]["password"].value;
             var atpos = email.indexOf("@");
             var dotpos = email.lastIndexOf(".");
 
-            if (name == "" || address == "" || email == "" || password == "")
+            if (name == ""  email == "" || password == "")
             {
                 alert("All fields must be filled in!");
                 return false;

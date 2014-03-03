@@ -6,6 +6,7 @@ package stationary_shop.cart;
 
 import java.text.DecimalFormat;
 import stationary_shop.entity.Product;
+import stationary_shop.entity.PrintJob;
 import java.util.*;
 
 /**
@@ -15,11 +16,13 @@ import java.util.*;
 public class ShoppingCart {
 
     List<ShoppingCartItem> items;
+    List<JobCart> jobs;
     int numberOfItems;
     double total;
 
     public ShoppingCart() {
         items = new ArrayList<ShoppingCartItem>();
+        jobs= new ArrayList<JobCart>();
         numberOfItems = 0;
         total = 0;
     }
@@ -50,7 +53,22 @@ public class ShoppingCart {
             items.add(scItem);
         }
     }
+    public synchronized void addjob(PrintJob printJob, String URL) {
+        boolean newJob = true;
 
+        for (JobCart scJobs : jobs) {
+            if (scJobs.getJob().getID() == printJob.getID() && scJobs.getURL() == URL) {
+
+                newJob = false;
+                scJobs.incrementQuantity();
+            }
+        }
+
+        if (newJob) {
+            JobCart scJobs= new JobCart(printJob,URL);
+            jobs.add(scJobs);
+        }
+    }
     public synchronized void decementItemQuantity(Product product) {
         boolean remove = false;
         for (ShoppingCartItem scItem : items) {
@@ -69,6 +87,25 @@ public class ShoppingCart {
             this.removeItem(product);
         }
     }
+    
+    public synchronized void decementJobQuantity(PrintJob printJob) {
+        boolean remove = false;
+        for (JobCart scjobs : jobs) {
+            if (scjobs.getJob().getID() == printJob.getID()) {
+
+                if (scjobs.quantity < 1) {
+                    remove = true;
+                }
+                else {
+                    scjobs.decrementQuantity();
+                }
+            }
+        }
+        
+        if (remove) {
+            this.removeJob(printJob);
+        }
+    }
 
     // remove an item
     public synchronized void removeItem(Product prod) {
@@ -81,6 +118,18 @@ public class ShoppingCart {
         }
 
         items.remove(item);
+    }
+    
+    public synchronized void removeJob(PrintJob printJob) {
+        JobCart job = null;
+        // get ShoppingCartItem
+        for (JobCart scjobs : jobs) {
+            if (scjobs.getJob().getID() == printJob.getID()) {
+                job = scjobs;
+            }
+        }
+
+        jobs.remove(job);
     }
 
     /**
@@ -128,6 +177,40 @@ public class ShoppingCart {
             }
         }
     }
+    
+    public synchronized void updatejobs(PrintJob printJob, String quantity) {
+
+        short qty = -1;
+
+        // cast quantity as short
+        qty = Short.parseShort(quantity);
+
+        if (qty >= 0) {
+
+            JobCart job = null;
+
+            for (JobCart scjobs : jobs) {
+
+                if (scjobs.getJob().getID() == printJob.getID()) {
+
+                    if (qty != 0) {
+                        // set item quantity to new value
+                        scjobs.setQuantity(qty);
+                    }
+                    else {
+                        // if quantity equals 0, save item and break
+                        job = scjobs;
+                        break;
+                    }
+                }
+            }
+
+            if (job != null) {
+                // remove from cart
+                items.remove(job);
+            }
+        }
+    }
 
     /**
      * Returns the list of <code>ShoppingCartItems</code>.
@@ -138,6 +221,11 @@ public class ShoppingCart {
     public synchronized List<ShoppingCartItem> getItems() {
 
         return items;
+    }
+    
+    public synchronized List<JobCart> getjobs() {
+
+        return jobs;
     }
 
     /**
@@ -160,7 +248,8 @@ public class ShoppingCart {
     }
 
     /**
-     * Returns the sum of the product price multiplied by the quantity for all
+     * Returns the sum of the product price multiplied by the quantity & 
+     * sum of the job price multiplied by the quantity for all
      * items in shopping cart list. This is the total cost excluding the
      * surcharge.
      *
@@ -174,7 +263,14 @@ public class ShoppingCart {
         for (ShoppingCartItem scItem : items) {
 
             Product product = (Product) scItem.getProduct();
-            amount += (scItem.getQuantity() * product.getPrice());
+            amount += (scItem.getQuantity() * product.getPrice());  
+            
+        }
+        for (JobCart scjobs : jobs) {
+
+            PrintJob job = (PrintJob) scjobs.getJob();
+            amount += (scjobs.getQuantity() * job.getPriceperPage());  
+            
         }
 
         return amount;
@@ -229,6 +325,7 @@ public class ShoppingCart {
      */
     public synchronized void clear() {
         items.clear();
+        jobs.clear();
         numberOfItems = 0;
         total = 0;
     }

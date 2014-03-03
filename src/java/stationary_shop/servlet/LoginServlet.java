@@ -59,7 +59,7 @@ public class LoginServlet extends HttpServlet {
             List employee = em.createQuery("select c from Employee c "
                 + "where c.email = '" + email + "' and c.password = '" +password +"'").getResultList();
             
-
+            
             if (!employee.isEmpty()) 
             {
                 Employee empl = (Employee) employee.get(0);
@@ -67,7 +67,7 @@ public class LoginServlet extends HttpServlet {
                 session.setAttribute("email", email);
                 session.setAttribute("name", empl.getName());
                 session.setAttribute("password", password);
-                session.setAttribute("type", type);
+                session.setAttribute("isEmployee", true);
                 session.setAttribute("logged_in", true);
             }
             else 
@@ -81,14 +81,14 @@ public class LoginServlet extends HttpServlet {
                     + "where c.email = '" + email + "' and c.password = '" +password +"'").getResultList();
             if (!customer.isEmpty()) 
             {
-            Customer cust = (Customer) customer.get(0);
-            request.setAttribute("login", "Logged in!");
-            session.setAttribute("email", email);
-            session.setAttribute("name", cust.getName());
-            session.setAttribute("address", cust.getAddress());
-            session.setAttribute("password", password);
-            session.setAttribute("type", type);
-            session.setAttribute("logged_in", true);
+                Customer cust = (Customer) customer.get(0);
+                request.setAttribute("login", "Logged in!");
+                session.setAttribute("email", email);
+                session.setAttribute("name", cust.getName());
+                session.setAttribute("address", cust.getAddress());
+                session.setAttribute("password", password);
+                session.setAttribute("isEmployee", false);
+                session.setAttribute("logged_in", true);
             }
             else 
             {
