@@ -6,6 +6,5 @@
     <a href="UpdateStock.jsp">Update Stock</a><br>
     <a href="ListCustomer">List Customers</a><br>
     <a href="AddEmployee.jsp">Add Employee</a><br>
-    <a href="RemoveEmployee.jsp">Remove Employee</a><br>
-     
+    
 </div>
