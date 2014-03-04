@@ -3,24 +3,29 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package stationary_shop.servlet;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import javax.servlet.ServletException;
+import java.io.*;
+import java.util.List;
+import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.*;
+
+import javax.persistence.PersistenceUnit;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityManager;
+
 
 /**
  *
  * @author NFLYN_000
  */
-@WebServlet(name = "LogoutServlet", urlPatterns = {"/Logout"})
-public class LogoutServlet extends HttpServlet {
-
+@WebServlet(name = "JobCatalogServlet", urlPatterns = {"/JobCatalog"})
+public class JobCatalogServlet extends HttpServlet {
+    
+    @PersistenceUnit
+    private EntityManagerFactory emf;
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -32,19 +37,32 @@ public class LogoutServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        assert emf != null;  //Make sure injection went through correctly.
+        
         HttpSession session = request.getSession();
+        
+        EntityManager em = null;
+        try {
+            em = emf.createEntityManager();
 
-        // remove all attributes from session
-        session.removeAttribute("email");
-        session.removeAttribute("password");
-        session.removeAttribute("isEmployee");
-        session.removeAttribute("logged_in");
+            //query for all the persons in database
+            List printJob = em.createQuery("select c from PrintJob c").getResultList();
+            session.setAttribute("JobsList", printJob);
 
-        request.getRequestDispatcher("index.jsp").forward(request, response);
+            
+            //Forward to the jsp page for rendering
+            request.getRequestDispatcher("Jobcatalog.jsp").forward(request, response);
+        } catch (Exception ex) {
+            throw new ServletException(ex);
+        } finally {
+            //close the em to release any resources held up by the persistebce provider
+            if (em != null) {
+                em.close();
+            }
+        }
     }
 
-// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *

@@ -12,6 +12,11 @@
             <url-pattern>/catalog.jsp</url-pattern>
             <url-pattern>/admin.jsp</url-pattern>
             <url-pattern>/login.jsp</url-pattern>
+            <url-pattern>/Jobcatalog.jsp</url-pattern>
+            <url-pattern>/AddEmployee.jsp</url-pattern>
+            <url-pattern>/RemoveEmployee.jsp</url-pattern>
+            <url-pattern>/AddJob.jsp</url-pattern>
+            <url-pattern>/RemoveJob.jsp</url-pattern>
             <url-pattern>/removeProduct.jsp</url-pattern>
             <url-pattern>/checkout.jsp</url-pattern>
             <include-prelude>/WEB-INF/jspf/header.jspf</include-prelude>

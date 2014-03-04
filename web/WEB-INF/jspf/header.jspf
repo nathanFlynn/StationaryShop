@@ -26,6 +26,7 @@
                 &nbsp; <a href="index.jsp">Home</a><br>
                 &nbsp; <a href="register.jsp">Register</a><br>
                 &nbsp; <a href="Catalog"> Catalog</a><br>
-                &nbsp; <a href="admin.jsp"> Admin Page</a><br>
+                &nbsp; <a href="JobCatalog"> Print Catalog</a><br>
+                &nbsp; <a href="admin"> Admin Page</a><br>
                 &nbsp; <a href="cart.jsp"> View Cart</a><br>
             </div>

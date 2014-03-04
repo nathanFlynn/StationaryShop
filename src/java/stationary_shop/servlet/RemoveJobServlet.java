@@ -6,20 +6,31 @@
 package stationary_shop.servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.List;
+import javax.annotation.Resource;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.PersistenceUnit;
+import javax.persistence.Query;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import javax.transaction.UserTransaction;
 
 /**
  *
- * @author NFLYN_000
+ * @author CCoen
  */
-@WebServlet(name = "LogoutServlet", urlPatterns = {"/Logout"})
-public class LogoutServlet extends HttpServlet {
+@WebServlet(name = "RemoveJobServlet", urlPatterns = {"/RemoveJob"})
+public class RemoveJobServlet extends HttpServlet {
+
+    @PersistenceUnit
+    private EntityManagerFactory emf;
+    
+    @Resource
+    private UserTransaction utx;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,19 +43,44 @@ public class LogoutServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        assert emf != null;
+        EntityManager em = null;
 
-        HttpSession session = request.getSession();
+        try {
 
-        // remove all attributes from session
-        session.removeAttribute("email");
-        session.removeAttribute("password");
-        session.removeAttribute("isEmployee");
-        session.removeAttribute("logged_in");
+            int id = Integer.parseInt(request.getParameter("id"));
+            
+            String deleteString = "DELETE FROM PrintJob WHERE id = :id";
 
-        request.getRequestDispatcher("index.jsp").forward(request, response);
+             // Begin transaction.
+            utx.begin();
+            
+            // Entity manager associated with transaction.
+            em = emf.createEntityManager();
+            
+            // Create query and set parameters to the request params.
+            Query q = em.createQuery(deleteString);
+            q.setParameter("id", id);
+            
+            // Execute query.
+            q.executeUpdate();
+            
+            // End transaction.
+            utx.commit();            
+
+            request.getRequestDispatcher("admin.jsp").forward(request, response);
+        } catch (Exception ex) {
+            throw new ServletException(ex);
+        } finally {
+            //close the em to release any resources held up by the persistebce provider
+            if (em != null) {
+                em.close();
+            }
+        }
+
     }
 
-// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *

@@ -9,11 +9,4 @@
             </table>
             <input type="submit" id="CreateProduct" value="CreateProduct" />
         </form>
-    <script>
-        function validateForm()
-        {
-            alert("All fields must be filled in!");
-            return false;
-        }
-    </script>
 </div>
