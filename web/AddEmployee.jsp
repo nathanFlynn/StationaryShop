@@ -17,14 +17,6 @@
         var atpos = email.indexOf("@");
         var dotpos = email.lastIndexOf(".");
 
-        if (name == "" || email == "" || password == "")
-        {
-            var name = document.forms["registerForm"]["name"].value;
-            var email = document.forms["registerForm"]["email"].value;
-            var password = document.forms["registerForm"]["password"].value;
-            var atpos = email.indexOf("@");
-            var dotpos = email.lastIndexOf(".");
-
             if (name == ""  email == "" || password == "")
             {
                 alert("All fields must be filled in!");
@@ -35,7 +27,7 @@
                 alert("Not a valid e-mail address");
                 return false;
             }
-        }
+        
     }
 </script>
 </div>
