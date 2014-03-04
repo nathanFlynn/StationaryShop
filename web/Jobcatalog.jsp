@@ -5,8 +5,8 @@
     <table id="JobListTable" border="1" align="center">
         <tr >
             <th bgcolor=> ID </th>
-            <th bgcolor=> pagesize </th>
             <th bgcolor=> priceperpage </th>
+            <th bgcolor=> pagesize </th>
         </tr>
         <c:forEach var="PrintJob" begin="0" items="${JobsList}">
             <tr>

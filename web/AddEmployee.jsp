@@ -11,13 +11,13 @@
 <script>
     function validateForm()
     {
-        var name = document.forms["registerForm"]["name"].value;
-        var email = document.forms["registerForm"]["email"].value;
-        var password = document.forms["registerForm"]["password"].value;
+        var name = document.forms["addEmployeeForm"]["name"].value;
+    var email = document.forms["addEmployeeForm"]["email"].value;
+        var password = document.forms["addEmployeeForm"]["password"].value;
         var atpos = email.indexOf("@");
         var dotpos = email.lastIndexOf(".");
 
-            if (name == ""  email == "" || password == "")
+            if (name == "" || email == "" || password == "")
             {
                 alert("All fields must be filled in!");
                 return false;

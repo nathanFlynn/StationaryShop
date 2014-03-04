@@ -19,5 +19,5 @@
     </c:forEach>
 
         </table>
-        <a href="AddCustomer.jsp"><strong>Create a Customer Record</strong></a>
+        <a href="register.jsp"><strong>Create a Customer Record</strong></a>
 </div>

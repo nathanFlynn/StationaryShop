@@ -58,6 +58,9 @@ body {
 #catalog{
     text-align: center;
 }
+#JobCatalog{
+    text-align: center;
+}
 #register{
     text-align: center;
 }
@@ -77,6 +80,12 @@ body {
     text-align: center;
 }
 #addProduct{
+    text-align: center;
+}
+#RemoveJob{
+    text-align: center;
+}
+#AddJob{
     text-align: center;
 }
 #loginDiv{
